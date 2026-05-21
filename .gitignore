@@ -1,0 +1,4 @@
+.DS_Store
+
+# Council session working directories (created at runtime; not part of the skill)
+council-*/

@@ -1,0 +1,21 @@
+{
+  "name": "unhingged",
+  "owner": {
+    "name": "unhingged"
+  },
+  "description": "Decision-making and advisory skills for Claude Code.",
+  "plugins": [
+    {
+      "name": "council",
+      "source": ".",
+      "description": "Pressure-test a question, decision, or idea through five independent advisor subagents + a Chairman verdict.",
+      "license": "MIT",
+      "keywords": [
+        "decision-making",
+        "advisory",
+        "pressure-test",
+        "subagents"
+      ]
+    }
+  ]
+}

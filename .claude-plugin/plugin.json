@@ -1,0 +1,18 @@
+{
+  "name": "council",
+  "displayName": "Council",
+  "description": "Pressure-test a question, decision, or idea through five independent advisor subagents arguing from locked perspectives, then a Chairman subagent renders a verdict.",
+  "version": "1.0.0",
+  "author": {
+    "name": "unhingged"
+  },
+  "license": "MIT",
+  "keywords": [
+    "decision-making",
+    "advisory",
+    "pressure-test",
+    "subagents",
+    "council",
+    "red-team"
+  ]
+}
