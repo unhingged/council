@@ -1,4 +1,10 @@
-# Council Skill
+<p align="center">
+  <img src=".github/clawd-purple.png" alt="Council — pressure-test any decision through five independent advisor subagents, then a Chairman renders the verdict" width="100%">
+</p>
+
+<h1 align="center">Council</h1>
+
+<p align="center"><em>An agentic decision pressure-test for Claude Code</em> — a <strong>Claude Code plugin</strong> &amp; <strong>Agent Skill</strong>.</p>
 
 A Claude Code skill that runs questions through an **agentic** council of five
 advisors. Each advisor runs as a **separate subagent** with its own isolated
@@ -40,28 +46,36 @@ arguments.
 
 ## Architecture
 
+```mermaid
+flowchart TD
+    Q(["User question"]) --> F["Frame neutrally<br/>framed.txt"]
+
+    subgraph advisors ["5 advisor subagents · parallel · isolated context"]
+        direction LR
+        A1["The Contrarian"]
+        A2["First Principles"]
+        A3["The Expansionist"]
+        A4["The Outsider"]
+        A5["The Executor"]
+    end
+
+    F --> A1 & A2 & A3 & A4 & A5
+    A1 & A2 & A3 & A4 & A5 --> C["Chairman subagent<br/>verdict.md"]
+    C --> S[["session.md"]]
+
+    classDef frame fill:#5b2a86,stroke:#f4f1e8,color:#ffffff;
+    classDef advisor fill:#e0623e,stroke:#f4f1e8,color:#ffffff;
+    classDef judge fill:#1b1b1f,stroke:#f4f1e8,color:#f4f1e8;
+    classDef out fill:#f4f1e8,stroke:#5b2a86,color:#1b1b1f;
+    class F frame
+    class A1,A2,A3,A4,A5 advisor
+    class C judge
+    class S out
 ```
-   user question → you frame it neutrally → framed.txt
-                                 │
-       ┌─────────────┬───────────┼───────────┬─────────────┐
-   ┌───▼───┐  ┌──────▼─────┐ ┌───▼────┐ ┌────▼────┐ ┌───────▼──┐
-   │contra-│  │  first     │ │expansi-│ │outsider │ │ executor │   five advisor
-   │ rian  │  │ principles │ │ onist  │ │         │ │          │   SUBAGENTS,
-   └───┬───┘  └──────┬─────┘ └───┬────┘ └────┬────┘ └───────┬──┘   in parallel,
-       │             │           │           │             │      each writes a
-       └─────────────┴────round-1/*.md───────┴─────────────┘      file
-                                 │
-                  (optional round 2..N: each advisor re-runs seeing the
-                   others' anonymized, shuffled previous round)
-                                 │
-                          ┌──────▼─────┐
-                          │  Chairman  │  subagent → verdict.md
-                          │  subagent  │
-                          └──────┬─────┘
-                                 │  orchestrator stitches the files together
-                                 ▼
-                            session.md
-```
+
+> **Optional debate rounds (2–3):** each advisor runs again seeing the others'
+> previous round — anonymized and shuffled — so they engage with arguments, not
+> authors. Then the orchestrator stitches the files into `session.md`.
 
 ## Requirements
 
