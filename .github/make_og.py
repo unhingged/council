@@ -22,8 +22,7 @@ RIGHT_EDGE = 1205           # mascot right edge x
 CENTER_Y = 322              # mascot vertical center
 
 VARIANTS = {
-    "clawd-crimson": "#9b1c31",
-    "clawd-purple":  "#5b2a86",
+    "clawd-purple": "#5b2a86",   # crimson alt: "#9b1c31"
 }
 
 
